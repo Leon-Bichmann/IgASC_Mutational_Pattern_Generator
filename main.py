@@ -44,12 +44,12 @@ df=df[~df["ASC"].isna()]
 
 #create ASC index dictionary
 ASCindex_dict={}
-for a in unique(df["ASC"]):
+for a in set(df["ASC"].values.tolist()):
     ASCindex=list(df["ASC"]==a)
     ASCindex_dict[a]=ASCindex
 
 #retrieve mutations
-mut_AA_list=get_mutation_A(df["heavy_sequence_mut_pos_AA"].values.tolist())
+mut_AA_list=get_mutation_AA(df["heavy_sequence_mut_pos_AA"].values.tolist())
 
 #create mutation matrix
 mut_AA_matrix=pd.DataFrame(create_mut_matrix(mut_AA_list, germline=False))
