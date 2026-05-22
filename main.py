@@ -51,19 +51,24 @@ ASCindex_dict={}
 for a in set(df["ASC"].values.tolist()):
     ASCindex=list(df["ASC"]==a)
     ASCindex_dict[a]=ASCindex
+print("indexed ASC groups")
 
 #retrieve mutations
 mut_AA_list=get_mutation_AA(df["heavy_sequence_mut_pos_AA"].values.tolist())
+print("retrieved mutations")
 
 #create mutation matrix
 mut_AA_matrix=pd.DataFrame(create_mut_matrix(mut_AA_list, germline=False))
+print("created mutation matrix")
 
 #create PSSMs
 PSSM_dict={}
 for a in ASCindex_dict.keys():
+    print(a)
     ASCindex=ASCindex_dict[a]
     pssm_df=create_pssm(mut_AA_matrix, ASCindex).T
     PSSM_dict[a]=pssm_df
+print("constructed PSSMs")
 
 #output PSSMs
 with open("HeavyChain_ASC_PSSMs.pkl", "wb") as f:
