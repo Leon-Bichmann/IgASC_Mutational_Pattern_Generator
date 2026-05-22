@@ -40,7 +40,7 @@ df["heavy_sequence_mut_pos_AA"]=df.apply(lambda row: detect_mut_per_position(row
 print("detected mutation AA positions")
 
 #output mutation positions and translated sequences
-df.to_csv("shaw_flu_data_v2_translated_and_mutation_indexed.csv",sep=",")
+df.to_csv("ALL_data_translated_and_mutation_indexed.csv",sep=",")
 
 #map to ASC
 df["ASC"]=df["v_call_heavy"].map(asc_map)
