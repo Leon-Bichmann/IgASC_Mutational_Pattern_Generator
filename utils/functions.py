@@ -1,3 +1,11 @@
+import glob
+import pyreadr
+import pandas as pd
+from Bio.Seq import Seq
+from utils.functions import *
+import pickle
+
+#define AAs
 all_aas=["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"]
 
 #helper functions
