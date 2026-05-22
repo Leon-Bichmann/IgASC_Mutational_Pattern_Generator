@@ -3,6 +3,7 @@ import pyreadr
 import pandas as pd
 from Bio.Seq import Seq
 from utils.functions import *
+import pickle
 
 #input
 file=glob.glob("data/*.rds")
@@ -60,6 +61,6 @@ for a in ASCindex_dict.keys():
     pssm_df=create_pssm(mut_AA_matrix, ASCindex).T
     PSSM_dict[a]=pssm_df
 
-#output PSSM
-for a in PSSM_dict.keys():
-    PSSM_dict[a].to_csv(f"HeavyChain_PSSM_{a}.csv",sep=",")
+#output PSSMs
+with open("HeavyChain_ASC_PSSMs.pkl", "wb") as f:
+    pickle.dump(PSSM_dict, f)
