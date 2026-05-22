@@ -56,8 +56,11 @@ def create_pssm(mut_AA_matrix, ASCindex):
             freqs=mut_AA_matrix[ASCindex][i].value_counts()
             if aa in freqs.index.tolist():
                 count_aa=mut_AA_matrix[ASCindex][i].value_counts()[aa]
-                count_all=mut_AA_matrix[ASCindex][i].value_counts()["."]
-                perc=count_aa/count_all
+                if "." in mut_AA_matrix[ASCindex][i].value_counts():
+                    count_all=mut_AA_matrix[ASCindex][i].value_counts()["."]
+                else:
+                    count_all=0
+                perc=count_aa/(count_all+count_aa)
             else:
                 perc=0
             pssm[i].append(perc)
