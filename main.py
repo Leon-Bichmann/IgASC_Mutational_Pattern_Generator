@@ -6,9 +6,13 @@ from utils.functions import *
 import pickle
 
 #input
-file=glob.glob("data/*.rds")
-result = pyreadr.read_r(file[0])
-df=result[None]
+files=glob.glob("data/*.rds")
+
+df_list=[]
+for f in files:
+    result = pyreadr.read_r(f)[None]
+    df_list.append(result)
+df=pd.concat(df_list, ignore_index=True)
 
 #load ASC map
 asc_map=pd.read_csv("assets/ASC_mapping_table.csv")
