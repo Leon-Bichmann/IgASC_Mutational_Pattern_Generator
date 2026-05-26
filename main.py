@@ -39,6 +39,7 @@ print("translated heavy sequence")
 df["heavy_sequence_mut_pos_AA"]=df.apply(lambda row: detect_mut_per_position(row['heavy_sequence_w_gaps_AA'],row['heavy_germline_w_gaps_AA']), axis=1)
 print("detected mutation AA positions")
 
+df["heavy_sequence_mut_pos_AA"]=df["heavy_sequence_mut_pos_AA"].astype(str).str.replace("'","")
 #output mutation positions and translated sequences
 df.to_csv("ALL_data_translated_and_mutation_indexed.csv",sep=",")
 
